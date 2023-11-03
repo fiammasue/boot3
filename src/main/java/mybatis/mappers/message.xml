@@ -15,11 +15,13 @@
 						message_id
 						,message
 						,sender
+						,read_yn
 						,room_id
 					) values(
 						message_num.nextval
 						,#{message}
 						,#{sender}
+						,#{read_yn}
 						,#{room_id}
 					)
 	</insert>

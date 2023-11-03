@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.boot.dao.ChatRoomDAO;
 import com.project.boot.dto.ChatRoom;
+import com.project.boot.dto.Message;
 
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +42,15 @@ public class ChatRoomService {
 		// TODO Auto-generated method stub
 	
 		return chatRoomDAO.findRoomById(roomId);
+	}
+	//이거 두개로 합치고 mapper에서 if 문써서 동적쿼리하고싶다.
+	//채팅방의 접속자수 조정 상승
+	public int upToConnectedCountById(Message message) {
+		return chatRoomDAO.upToConnectedCountById(message);
+	}
+	//채팅방의 접속자수 조정 감소
+	public int downToConnectedCountById(Message message) {
+		return chatRoomDAO.downToConnectedCountById(message);
 	}
 	
 }

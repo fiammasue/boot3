@@ -44,4 +44,15 @@
 		where room_id=#{roomId}
 	
 	</select>
+	
+	<update id="upToConnectedCountById">
+		update chat_room
+		set connected_count = connected_count + 1
+		where room_id = #{room_id}
+	</update>
+	<update id="downToConnectedCountById">
+		update chat_room
+		set connected_count = connected_count - 1
+		where room_id = #{room_id}
+	</update>
 </mapper>
