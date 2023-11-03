@@ -1,0 +1,66 @@
+@charset "UTF-8";
+ #view-Form {
+    width: 500px;
+    padding: 20px;
+  }
+
+  /* Styling for the table within the form */
+  .post {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+.post th {
+	background-color: #d36f12b3;
+    color: white;
+}
+  /* Styling for table cells */
+  .post th, .post td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  /* Styling for labels */
+  #notice-id {
+    display: none;
+  }
+
+  /* Styling for title */
+  #notice-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  /* Styling for member information */
+  #notice-memberid, #notice-regdate, #notice-hit {
+    font-weight: bold;
+    color: #666;
+  }
+
+  /* Styling for contents textarea */
+  #notice-contents {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  #insertReplyButton{
+  border: none;
+    padding: 8px;
+    color: white;
+    background-color: #d36f12b3;
+    border-radius: 5px;
+  
+  }
+.userButton > button{
+	  border: none;
+    padding: 8px;
+    color: white;
+    background-color: #d36f12b3;
+    border-radius: 5px;
+}
+  
+  

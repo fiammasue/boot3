@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+ 		<typeAlias type="com.project.boot.dto.Member"  alias="Member" />
+ 		<typeAlias type="com.project.boot.dto.AttachFile"  alias="AttachFile" />		
+		<typeAlias type="com.project.boot.dto.Board"  alias="Board" />
+		<typeAlias type="com.project.boot.dto.Reply"  alias="Reply" />
+		<!-- <typeAlias type="com.kosa.pro30.notice.domain.NoticeDTO"  alias="NoticeDTO" /> -->
+		<typeAlias type="com.project.boot.type.OracleStrArrTypeHandler"  alias="OracleStrArrTypeHandler" />
+	</typeAliases>
+</configuration>

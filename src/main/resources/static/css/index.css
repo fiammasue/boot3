@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+
+
+*{
+    margin : 0; 
+    padding:0;
+    box-sizing: border-box; /*諛뺤뒪 �쁺�뿭�� �뀒�몢由ш퉴吏�*/
+}
+#container{
+    margin: 0 auto; /*�솕硫댁쨷�븰*/
+    width: 1200px;
+}
+/* #user{
+    height: 0px;
+    position: relative;
+} */
+/* #enterMember{
+    width: 100%;
+    height:50px;
+    background-color: white;
+    padding-top: 40px;
+}
+.members{
+    height: 60px;
+}
+.members>li{
+    float: right;
+}
+.members>li>a{
+    display: block;
+    �쉶�썝媛��엯 濡쒓렇�씤 �깋源�
+    color: #d36f12b3;
+    font-weight: 600;
+    text-shadow: 0 1px #07c;
+    padding: 10px 10px;
+}
+.members>li>a:hover{
+    留덉슦�뒪 �삱由щ㈃ 源뚮ℓ吏�
+    color:#000;
+    text-shadow: 0 -1px #07c;
+}  */
+
+
+#slideShow{
+    clear: both;
+    width: 100%;
+    height:300px;
+    /* background-color: orange; */
+    /* �쁺�뿭�씠 �꽆移섎㈃ 媛먯땄 */
+    overflow: hidden;
+    position: relative;
+}
+#slides{
+    position: absolute;
+}
+#slides > img{
+    width:100%;
+    float: left;
+}
+button{
+    
+    position :absolute;
+    height:100%;
+    top: 0;
+    border:none;
+    padding: 20px;
+    /* �닾紐� 諛곌꼍�깋 */
+    background-color: transparent;
+    color:#000;
+    font-weight: 800;
+    font-size:24px;
+    /* �솕�궡�몴 諛섑닾紐낇븯寃� */
+    opacity: 0.5;
+}
+#prev{
+    left: 0;
+}
+#next{
+    right:0;
+}
+button:hover{
+    background-color: #222;
+    color: #fff;
+    opacity: 0.6;
+    cursor: pointer;
+}
+button:focus{
+    outline: 0;
+    /* �븘�썐�씪�씤�쓣 �뾾�빊 */
+}
+
+
+#contents{
+    width:100%;
+    height:300px;
+    /* background-color: black; */
+    margin-top: 20px;
+}
+#tabMenu{
+    float: left;
+    width: 600px;
+    height :100%;
+    /* background-color: violet; */
+    margin-top: 10px;
+}
+/* 怨듭��궗�빆 媛ㅻ윭由ъ뿉 ���븳 css */
+#tabMenu input[type="radio"]{
+    display: none;
+    /* �씪�뵒�삤 踰꾪듉 媛먯텛湲� */
+}
+#tabMenu label{
+    display: inline-block;
+    margin:0 0;
+    padding:15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #aaa;
+    border: 1px solid transparent;
+}
+#tabMenu label:hover{
+    color: #222;
+    cursor: pointer;
+}
+#tabMenu input:checked + label{
+    color:#b00;
+    border : 1px solid #ddd;
+    background-color: #eee;
+}
+.tabContent{
+    display: none;
+    /* border-top: 1px solid #ddd; */
+}
+.tabContent h2{
+    display: none;
+}
+
+
+
+/* #notice ul{
+    list-style: none;
+
+}
+#notice ul li {
+    display: inline;
+    font-size: 16px;
+    line-height: 2.5;
+}
+#bBoard>ul>li{
+    padding: 13px;
+    margin: 35px;
+}
+#bBoard ul{
+    list-style: none;
+    padding: 3px;
+    border-bottom: 1px solid #ccc;
+} */
+table tr{
+    border: 1px solid #ccc;
+}
+table tr td{
+        padding: 11px 33px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+}
+a:link{
+    color:#000;
+}
+a:visited{
+    color: #000;
+}
+table ,tr, td{
+    border-collapse:collapse;
+    
+}
+#gallery ul li {
+    display: inline;
+}
+#noticeBoard>ul> li {
+    padding: 19px;
+    margin: 44px;
+}
+
+#gallery ul {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+
+#tab1:checked~ #notice,
+#tab2:checked~#gallery{
+    display: block;
+}
+#links{
+    float: right;
+    width: 600px;
+    height:100%;
+    /* background-color: skyblue; */
+    margin-top: 15px;
+}
+#links ul{
+    padding:0;
+    overflow: hidden;
+}
+#links ul li{
+    float: left;
+    width:33%;
+    text-align: center;
+    margin:10px 0;
+}
+#links ul li a span{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height:150px;
+    border-radius: 100%;
+    border: 1px solid #ddd;
+    /* �닔吏곸쨷媛� */
+    line-height: 150px;
+}
+#quick-icon1{
+    background-image: url('../images/me01.jpg');
+}
+#quick-icon2{
+    background-image: url('../images/me02.jpg');
+}
+#quick-icon3{
+    background-image: url('../images/me03.jpg');
+}
+#links ul li a p{
+    margin-top:15px;
+    font-weight:600;
+    color:#666;
+}
+
+/* footer{
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+    border-top:2px solid #222;
+}
+#bottomMenu{
+    width:100%;
+    height:20px;
+    position:relative;
+}
+#bottomMenu ul{
+    margin-top: 15px;
+}
+#bottomMenu ul li{
+    float: left;
+    padding:5px 20px;
+    border-right:1px solid #ddd;
+}
+#bottomMenu ul li:last-child{
+    border-right:none;
+    留⑤쭏吏�留됱� �삤瑜몄そ�뿉 �꽭濡쒖꽑 �뾾�빊
+}
+#bottomMenu ul li a, #bottomMenu ul li a:visited{
+    font-size: 15px;
+    color:#666;
+}
+#sns{
+    position:absolute;
+    right: 0;
+    float: right;
+   
+}
+#sns ul li{
+    display: inline-block;
+    border:none;
+    padding:5px;
+    
+}
+#company{
+    clear: left;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+p{
+    font-size: 14px;
+    color:#aaa;
+} */

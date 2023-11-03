@@ -1,0 +1,130 @@
+#reviseForm-Dialog {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.tb {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+caption {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.tb th, .tb td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.col {
+  width: 150px;
+  font-weight: bold;
+  color: #d36f12;
+}
+
+/* 아이디 입력란 스타일 */
+#revise-uid {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 비밀번호 입력란 스타일 */
+#revise-pwd {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 비밀번호 확인 입력란 스타일 */
+#reviseForm-Dialog >#pwd2 {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 이름 입력란 스타일 */
+#revise-uname {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 전화번호 입력란 스타일 */
+#revise-phone {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 주소 입력란 스타일 */
+#revise-address {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 나이 입력란 스타일 */
+#revise-age {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 이메일 입력란 스타일 */
+#revise-email {
+  background: #f7f7f7;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+/* 성별 라디오 버튼 스타일 */
+.gender {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.iner {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.iner input[type="radio"] {
+  margin-right: 5px;
+}
+input:focus{
+	outline:none;
+}
+
+/* 필요에 따라 스타일을 수정하거나 추가하세요. */

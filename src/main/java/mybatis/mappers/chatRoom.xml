@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.ChatRoomDAO">
+
+<!-- 	<resultMap id="fileMap" type="AttachFile">
+		<result property="fileNo" column="fileno" />
+		<result property="boardId" column="boardid" />
+    </resultMap> -->
+	<insert id="createRoom">
+		insert into chat_room(
+							room_id
+							,room_name
+							,receiver
+							,sender
+					) values(
+						#{room_id}
+						,#{room_name}
+						,#{receiver}
+						,#{sender}
+					)
+	</insert>	
+	<delete id="deleteRoom">
+		delete from chat_room
+		where room_id = #{room_id}
+	</delete>
+	<select id="selectRoomList" resultType="ChatRoom">
+		select room_id
+			,room_name
+			,receiver
+			,sender
+		from chat_room
+		where receiver=#{user_id} or sender=#{user_id}
+	</select>
+	
+	<select id="findRoomById">
+		select room_id
+				,room_name
+				,receiver
+				,sender
+		from chat_room
+		where room_id=#{roomId}
+	
+	</select>
+</mapper>

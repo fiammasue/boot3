@@ -1,0 +1,85 @@
+  #insert-Form {
+    width: 450px; /* ����: ���� ũ�� ���� */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the table within the form */
+  .insertTB {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  /* Styling for table captions */
+  .insertTB caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  /* Styling for table cells */
+  .insertTB th, .insertTB td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+.insertTB th.col {
+  width: 20%;
+}
+
+/* 오른쪽 열의 스타일 설정 */
+.insertTB td {
+  width: 80%;
+}
+  /* Styling for input and textarea fields */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  textarea{
+      height: 181px;
+  }
+
+  /* Styling for radio buttons and labels */
+  .boardType label {
+    margin-bottom: 5px;
+  }
+
+  /* Styling for checkboxes */
+  #fixed_yn {
+    vertical-align: middle;
+  }
+
+  /* Styling for the submit button */
+  #submit-button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  /* 답변 작성폼의 테이블 크기 */
+  .insertReplyTB th.col {
+  width: 20%;
+}
+
+/* 오른쪽 열의 스타일 설정 */
+.insertReplyTB td {
+  width: 80%;
+}
+
+

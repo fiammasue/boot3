@@ -1,0 +1,58 @@
+/* 스타일 for the dialog container */
+#view-Dialog {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 스타일 for the form caption */
+#view-Dialog caption {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* 스타일 for the member's name */
+#view-Dialog caption span {
+    font-family: 'Merienda', cursive;
+}
+
+/* 스타일 for the table */
+.tb {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #d36f12b3;
+    margin: 20px 10px;
+}
+
+/* 스타일 for table columns */
+.col {
+    width: 147px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #d36f12b3;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 스타일 for table data cells */
+table td {
+    width: 349px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 스타일 for links */
+a {
+    color: #888;
+    text-decoration: none;
+}

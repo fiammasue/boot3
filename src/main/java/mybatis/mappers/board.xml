@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.BoardDAO">
+	<!-- 메인페이지 top5 -->
+	<select id="getTop5BoardList" resultType="Board">
+		select 
+			*
+			from (
+				select 
+					level, board.*
+				from board 
+				where boardtype=#{boardtype}
+	            
+	            start with pid =0
+	            CONNECT by prior boardid = pid
+	            order SIBLINGS by boardid desc
+			)a
+		
+			<![CDATA[
+		where  rownum <= 5
+		]]>
+	</select>
+	<!-- 게시판 상세보기-->
+	<select id="getBoard" resultType="Board">
+	
+		select boardid
+				, title
+				, contents
+				, regdate
+				, hit
+				, memberid
+				,boardtype 
+		from board 
+		where boardid=#{boardid}
+	
+	</select>
+	<!-- 게시판 목록보기 -->
+	<!-- 이거는 페이징 전이라 이제 필요없다. -->
+<!-- 	<select id="getBoardList" resultType="Board">
+		select /*+INDEX_desc(board PK_BOARD) */ 
+				boardid, title, contents, hit, memberid, fixed_yn 
+		from board 
+		where boardtype=#{boardtype} and fixed_yn='Y' 
+		union all 
+		select /*+ index_desc(board PK_BOARD) */ 
+				boardid, title, contents, hit, memberid,fixed_yn 
+		from board 
+		<![CDATA[
+		where boardtype=#{boardtype} and fixed_yn <> 'Y' or fixed_yn is null
+		]]>
+	</select> -->
+	<!-- 게시판 글작성 -->
+	<insert id="insertBoard">
+		<selectKey keyProperty="boardid" resultType="int"  order="BEFORE">
+				select 
+					board_num.nextval boardid 
+				from dual
+		</selectKey>
+		insert into board(  
+						boardid 
+						,title 
+						,contents 
+						,regdate 
+						,hit 
+						,boardtype 
+						,memberid  
+						) values ( 
+						#{boardid}
+						, #{title}
+						, #{contents}
+						,sysdate 
+						,0 
+						, #{boardtype}
+						, #{memberid}
+						)
+						
+	</insert>
+	<!-- 게시판 답글 달기 -->
+	<insert id="insertBoardReply">
+	<selectKey keyProperty="boardid" resultType="int"  order="BEFORE">
+			select 
+				board_num.nextval boardid 
+			from dual
+		</selectKey>
+		insert into board(  
+						pid
+						,boardid 
+						,title 
+						,contents 
+						,regdate 
+						,hit 
+						,boardtype 
+						,memberid  
+						) values ( 
+						#{pid}
+						,#{boardid}
+						, #{title}
+						, #{contents}
+						,sysdate 
+						,0 
+						, #{boardtype}
+						, #{memberid}
+						)
+						
+	</insert>
+	<!-- 게시판 조회수 1 증가 -->
+	<update id="hitUpdate">
+		update board 
+		set hit = hit + 1 
+		where boardid=#{boardid}
+		
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard">
+		update board 
+		
+		 set 
+			title=#{board.title}
+			,contents=#{board.contents} 
+			,regdate=sysdate 
+			, boardtype=#{board.boardtype}
+			
+		where boardid=#{boardid}
+			
+	
+	</update>
+	<!-- 게시글 한개 삭제 -->
+	<delete id="deleteBoard">
+		delete from board 
+		where boardid in(     
+			select boardid from board
+			start with boardid =#{boardid}
+			connect by prior boardid = pid)
+	
+	</delete>
+	<!-- 자식 답변글 삭제 -->
+<!-- 	<delete id="deleteChildBoard">
+	
+		delete from board 
+		where boardid in(     
+			select boardid from board
+			start with boardid =#{boardid}
+			connect by prior boardid = pid)
+	
+	</delete> -->
+	<!-- 게시글 선택 삭제 -->
+	<delete id="deleteBoards">
+		delete from board where boardid in(
+		
+		select boardid from board
+				start with boardid in
+		
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+				
+	
+		</foreach>
+		connect by prior boardid = pid)
+	</delete>
+	<!-- 전체 게시글 갯수 -->
+	<select id="getTotalCount" resultType="int">
+	
+	select count(*) from board where boardtype=#{boardtype}
+	
+	
+	</select>
+	<!-- 게시판 페이징 -->
+	<select id="getBoardList" resultType="Board">
+		select b.* from(
+					select rownum nrow, a.* from (
+							select 
+                				level, board.*
+							from board 
+							where boardtype=#{boardtype}
+							
+							<if test="searchTitle != '' and searchTitle != null">
+								and lower(title) like lower(concat(concat('%',#{searchTitle}),'%'))
+	
+							</if>
+	
+							start with pid =0
+				            CONNECT by prior boardid = pid
+				            order SIBLINGS by boardid desc
+				            ) a 
+ <![CDATA[
+		where rownum <= #{endNo}) b 
+		where nrow between #{startNo} and #{endNo}
+	]]>
+	
+	</select>
+
+	
+</mapper>

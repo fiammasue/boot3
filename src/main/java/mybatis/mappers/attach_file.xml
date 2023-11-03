@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.AttachFileDAO">
+
+	<resultMap id="fileMap" type="AttachFile">
+		<result property="fileNo" column="fileno" />
+		<result property="boardId" column="boardid" />
+    </resultMap>
+	<!-- 첨부파일 추가 -->
+	<insert id="insertAttach">
+		insert into attach_file(
+						fileno
+						,boardid
+						,file_name_org
+						,file_name_real
+						,length
+						,content_type
+						,reg_date
+		
+					) values(
+						file_num.nextval
+						,#{boardId}
+						,#{file_name_org}
+						,#{file_name_real}
+						,#{length}
+						,#{content_type}
+						,sysdate
+					)
+	
+	</insert>
+	 <!-- 해당 게시글에 따른 첨부파일 목록 -->
+	<select id="selectFileList" resultMap="fileMap">
+		select * 
+		from attach_file 
+		where boardid=#{boardId}
+	
+	</select>
+	<!-- 해당 첨부파일링크에 따른 첨부파일하나 검색 -->
+	<select id="selectFileOne" resultMap="fileMap">
+		select *
+		from attach_file
+		where fileno=#{fileNo}
+	
+	</select> 
+	
+		 <!-- 해당 게시글에 따른 첨부파일 목록 -->
+	<select id="selectFileListBoards" resultMap="fileMap">
+		select * 
+		from attach_file 
+		where boardid in 
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+		#{item}
+		
+		
+		</foreach>
+	
+	</select>
+
+
+</mapper>

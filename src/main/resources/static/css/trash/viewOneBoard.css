@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+body{
+  background-color: #f7f7f7;
+  font-size:17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin:0;
+}
+#container{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 400px;
+  height: 500px;
+  /* max-width: 100%; */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  /* text-align: center; */
+  padding: 20px;
+  position:relative;
+}
+caption{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+table>caption>span{
+  font-family: 'Merienda', cursive;
+}
+.tb{
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #d36f12b3;
+  margin:20px 10px;
+}
+.col{
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  /* 글자색 */
+  color: #d36f12b3;
+  /* 오른쪽 테두리 */
+  border-right:1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+table td{
+  width: 349px;
+  padding: 10px;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+a{
+  color: #888;
+  text-decoration: none;
+
+}
+#link li{
+  list-style: none;
+  float: left;
+  padding: 8px 41px;
+  border-right:1px solid #ddd;
+  margin-top: 0px;
+}
+#link>li:last-child{
+  border-right:none;
+  /* 맨마지막은 오른쪽에 세로선 없앰 */
+}
+#contents{
+  height: 219px;
+}

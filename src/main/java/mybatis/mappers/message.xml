@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.MessageDAO">
+
+<!-- 	<resultMap id="fileMap" type="AttachFile">
+		<result property="fileNo" column="fileno" />
+		<result property="boardId" column="boardid" />
+    </resultMap> -->
+	
+	<insert id="insertMessage"> 
+		insert into message(
+						message_id
+						,message
+						,sender
+						,room_id
+					) values(
+						message_num.nextval
+						,#{message}
+						,#{sender}
+						,#{room_id}
+					)
+	</insert>
+
+	<update id="updateReadCount">
+		update message
+		set read_yn='Y'
+		where room_id=#{room_id}
+	</update>
+	
+	<select id="selectMessageList" resultType="Message">
+		select message_id
+				,message
+				,read_yn
+				,reg_date
+				,sender
+				,room_id
+		from message
+		where room_id=#{room_id}
+		order by reg_date asc
+	</select>
+</mapper>

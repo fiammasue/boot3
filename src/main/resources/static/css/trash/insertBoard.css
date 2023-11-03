@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+body{
+  background-color: #f7f7f7;
+  font-size:17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin:0;
+}
+#container{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 500px;
+  height: 669px;
+  /* max-width: 100%; */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  /* text-align: center; */
+  padding: 20px;
+  position:relative;
+}
+caption{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+table>caption>span{
+  font-family: 'Merienda', cursive;
+}
+.tb{
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #d36f12b3;
+  margin:20px 10px;
+}
+.col{
+  width: 160px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  /* 湲��옄�깋 */
+  color: #d36f12b3;
+  /* �삤瑜몄そ �뀒�몢由� */
+  border-right:1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+table td{
+  width: 349px;
+  padding: 10px;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+a{
+  color: #888;
+  text-decoration: none;
+
+}
+#link li{
+  list-style: none;
+  float: left;
+  padding:5px 20px;
+  border-right:1px solid #ddd;
+  margin-top: 35px;
+}
+#link>li:last-child{
+  border-right:none;
+  /* 留⑤쭏吏�留됱� �삤瑜몄そ�뿉 �꽭濡쒖꽑 �뾾�빊 */
+}
+input{
+  font-size: 14pt;
+  margin:0px;
+  width: 100%;
+  padding:5px 0px;
+  border:none;
+}
+input:focus{
+  outline: none;
+}
+input[type=submit]{
+  background-color: #d36f12b3;
+  border: none;
+  color:white;
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  /* font-size: 14px; */
+  margin-top: 15px;
+}
+input[type=reset]{
+  background-color: #d36f12b3;
+  border: none;
+  color:white;
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  /* font-size: 14px; */
+  margin-top: 10px;
+}
+/* �씠遺�遺꾩씠 �씪�뵒�삤 遺�遺꾩쓣 諛붽씀湲� �쐞�븿 */
+.boardType input{
+  text-align: left;
+	width:auto;
+}
+#pwdErrorMessage{
+  font-size: 13px;
+  color: red;
+}
+#contents{
+  height: 228px;
+  width: 100%;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+#contents:focus{
+	outline:none;
+}

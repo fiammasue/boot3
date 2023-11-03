@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+body{
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+}
+#main{
+  margin: 50px auto;
+  background-color: white;
+  position: relative;
+  width: 70%;
+  margin: 50px auto;
+  padding: 20px;
+}
+caption{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+table{
+  border-collapse: collapse;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #d36f12b3;
+  margin:20px 10px;
+}
+.head{
+  background-color: #d36f12b3;
+  color:white;
+  font-size: 14pt;
+}
+.head>th{
+  padding: 10px;
+      text-align: center;
+}
+th,td{
+  width: 1200px;
+  table-layout: fixed;
+  word-break: break-all;
+  height: auto;
+  border-right:1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+td{
+  text-align: center;
+
+}
+.col{
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  /* 湲��옄�깋 */
+  color: #153d73;
+  /* �삤瑜몄そ �뀒�몢由� */
+}
+.kk{
+  width: 147px;
+  padding: 10px;
+  vertical-align: top;
+  /* �삤瑜몄そ �뀒�몢由� */
+  border-right:1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+a{
+  text-decoration: none;
+  margin-left: 15px;
+  color:#888;
+  
+}
+input[type='submit']{
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  color: #888;
+  margin-left: 15px;
+  width: 4%;
+}
+
+#searchTitle{
+	margin-top: 10px;
+    width: 179px;
+    height: 21px;
+}

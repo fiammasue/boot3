@@ -1,0 +1,147 @@
+/* Sample styles for the comment board */
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.post {
+  width: 100%;
+  border:1px solid #ddd;
+}
+
+.post th,
+.post td {
+  padding: 8px;
+}
+
+.post th {
+  width: 100px;
+  font-weight: bold;
+  background-color: #d36f12b3;
+  color: white;
+}
+
+.post td input[type="text"],
+.post td textarea {
+  width: 100%;
+  padding: 4px;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border: none;
+}
+
+#fixed-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+#fixed-buttons button {
+
+  cursor: pointer;
+  margin-left: 10px;
+  border: none;
+  background-color: #dda068b3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+#fixed-buttons button:hover{
+  background-color: #d36f12b3;
+}
+form {
+  margin: 20px 11px 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  
+}
+
+.comment {
+  display: block;
+  font-weight: bold;
+
+}
+
+form textarea {
+  width: 99%;
+  padding: 4px;
+  resize: vertical;
+  border: 1px solid #ccc;
+}
+
+form button {
+  margin-top: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #dda068b3;
+    color: white;
+    padding: 3px 9px;
+    border-radius: 3px;
+
+}
+form button:hover{
+  background-color: #d36f12b3;
+}
+.comment-id {
+  font-weight: bold;
+}
+
+.comment-time {
+  margin-left: 10px;
+  color: #666;
+}
+
+.edit-button,
+.delete-button {
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #dda068b3;
+    color: white;
+    padding: 3px 9px;
+    border-radius: 3px;
+
+}
+.edit-button:hover,
+.delete-button:hover{
+  background-color: #d36f12b3;
+}
+.userButton{
+  display: flex;
+  justify-content: flex-end;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+#userid{
+  display: block;
+  color: #888;
+  border:none;
+}
+#userid:focus{
+  display: block;
+  color: #888;
+  outline: none;
+}
+#boardid, #replyid{
+  display: none;
+}
+
+
+
+

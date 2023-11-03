@@ -1,0 +1,39 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+body{
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  font-size:17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin:0;
+}
+.container{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 400px;
+  height: 300px;
+  /* max-width: 100%; */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  /* text-align: center; */
+  padding: 20px;
+}
+.message{
+  margin-top: 100px;
+  /* margin-left: 20px; */
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.container>a{
+  color: #888;
+  float: right;
+  margin-top: 50px;
+  margin-right: 10px;
+  text-decoration: none;
+}

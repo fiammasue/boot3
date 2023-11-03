@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+/* 怨듯넻遺� */
+*{
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+body{
+  background-color: #f7f7f7;
+  font-size:17px;
+  /* display: flex; */
+ /* position: relative; */
+ background-position: center;
+  min-height: 100vh;
+  margin:0;
+}
+.contain{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 500px;
+  /* position: absolute; */
+  /* margin-top: 50px; */
+  /* margin-left: 680px; */
+  margin: 0px auto;
+  padding: 20px;
+  max-width: 100%;
+  overflow: hidden;
+}
+/* �쉶�썝媛��엯 湲��옄 */
+.header{
+  padding:10px 20px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #888;
+}
+.header h2{
+  margin: 0;
+}
+.form{
+  padding: 30px 40px;
+}
+.register_info{
+  margin-bottom:10px;
+  padding-bottom: 10px;
+  position:relative;
+}
+/* �빆紐� �씪踰� */
+.register_info label{
+  display: block;
+  margin:5px 10px;
+}
+/* input �깭洹� */
+.register_info input{
+  border: 1.5px solid #535053;
+  border-radius : 3px;
+  display: block;
+  font-size: 17px;
+  padding:5px;
+  width: 93%;
+  margin: 0 2%
+}
+/* �쉶�썝媛��엯 珥덇린�솕 踰꾪듉 */
+.submit{
+  background-color: #d36f12b3;
+  border: 2px solid #d36f12b3;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  color:#fff;
+  margin-top: 10px;
+  font-size: 17px;
+}
+.contain>.header>h2>span{
+  display: inline-block;
+  padding:15px;
+  font-family: 'Merienda', cursive;
+}
+
+.gender{
+  text-align: center;
+  position: relative;
+  float: left;
+  padding: 15px;
+  width: 93%;
+  /* border: 1px solid #535053; */
+}
+.iner{
+  position: relative;
+  padding: 0px 15px;
+    width: 43%;
+    float: left;
+}
+.iner input {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  left: 65px;
+  margin-top: -7px;
+}
+#pwdErrorMessage{
+	visibility:hidden;
+  padding-left: 20px;
+  color: red;
+}
+

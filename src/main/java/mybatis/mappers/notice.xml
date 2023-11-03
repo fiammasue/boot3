@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.NoticeDAO">
+
+    <resultMap id="boardMap" type="Board">
+    </resultMap>
+    
+    <!-- 메인페이지 top5 -->
+	<select id="getTop5BoardList" parameterType="java.util.Map" statementType="CALLABLE">
+        { call get_top5(
+            #{boardtype},
+            #{v_cursor, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=boardMap}
+        ) }
+    </select>
+    <!-- 공지 작성 -->
+	<insert id="insertBoard" statementType="CALLABLE">
+		{call insert_board(
+							#{title}
+							,#{contents}
+							,#{boardtype}
+							,#{fixed_yn}
+							,#{memberid}
+		)}
+	
+	</insert>
+	<!-- 공지 상세보기 -->
+	<select id="getBoard" resultMap="boardMap" statementType="CALLABLE">
+		{call get_board(
+						#{boardid}
+						,#{v_cursor, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=boardMap}
+		)}
+	
+	</select>
+	
+	<!-- 조회수 올리기 -->
+	<update id="hitUpdate" statementType="CALLABLE">
+		{call hit_update(
+						#{boardid}
+		)}
+	
+	</update>
+	
+	<!-- 공지 수정 -->
+	<update id="updateBoard" statementType="CALLABLE">
+		{call update_board(
+							#{title}
+							,#{contents}
+							,#{fixed_yn}
+							,#{boardtype}
+							,#{boardid}
+		)}
+	
+	</update>
+	<!-- 공지 삭제 -->
+	<delete id="deleteBoard" statementType="CALLABLE">
+	
+		{call delete_board(
+							#{boardid}
+		)}
+	
+	
+	</delete>
+	<!-- 선택 공지 삭제 -->
+<!-- 	<delete id="deleteBoards" statementType="CALLABLE">
+	
+		{call delete_boards(
+							#{boards, jdbcType=ARRAY, typeHandler=com.project.boot.type.OracleStrArrTypeHandler, mode=IN}
+		)}
+	
+	
+	</delete>  --> 
+ 	<delete id="deleteBoards" >
+	
+		delete from board where boardid in 
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+				
+	
+		</foreach>
+	
+	
+	</delete> 
+	<!-- 공지사항 전체 갯수 -->
+	<select id="getTotalCount" statementType="CALLABLE">
+		{call get_total_board_count(
+									#{board.boardtype}
+									,#{p_cnt, jdbcType=INTEGER, mode=OUT}
+		)}
+	
+	
+	</select>
+	<!-- 공지사항 페이징 출력 -->
+	<select id="getBoardList" statementType="CALLABLE" resultMap="boardMap">
+		{call get_board_search(
+								#{boardtype}
+								,#{endNo}
+								,#{startNo}
+								,#{searchTitle}
+								,#{v_cursor, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=boardMap}
+		)}
+	
+	
+	</select>
+	
+	<!-- 공지사항 더보기 출력 -->
+	<select id="getBoardMoreList" statementType="CALLABLE" resultMap="boardMap">
+		{call get_more_list(
+							#{board.boardtype}
+							,#{board.boardid}
+							,#{v_cursor, jdbcType=CURSOR, mode=OUT, javaType=java.sql.ResultSet, resultMap=boardMap}
+		)}
+	
+	
+	</select>
+	
+</mapper>
