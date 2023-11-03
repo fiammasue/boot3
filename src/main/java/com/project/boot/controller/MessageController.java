@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MessageController {
-	
+	//커밋해야해서
 	private final MessageService messageService;
 	private final SimpMessageSendingOperations messagingTemplate;
 	
