@@ -41,7 +41,9 @@
 						const recv = JSON.parse(message.body);//메시지 파싱
 						recvMessage(recv);
 					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
-							
+			//입장하면 접속자 수를 하나 늘린다. sender는 필요없을것
+			ws.send("/pub/chat/message", {}
+	        , JSON.stringify({type:'ENTER',room_id:$("#room_id").text(), sender : sender}));			
 		},error => {
 			alert("error "+error);
 		});
@@ -53,7 +55,8 @@
 				const message = $("#chatContent").val();//메시지 내용
 				//메시지 보내기
 				ws.send("/pub/chat/message",{},JSON.stringify({
-																room_id:$("#room_id").text()
+																type:'TALK'
+																,room_id:$("#room_id").text()
 																,message:$("#chatContent").val()
 																,sender:sender
 																}));
@@ -61,10 +64,31 @@
 				$("#chatContent").val("");
 		});
 		
-		
+		//받아온 메시지 처리 -> 구독할때 등록해준다.
 		const recvMessage = recv => {
 			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
 			$("#chatList").append(chatListInfo);
+		}
+		
+		//페이지를 나가거나 브라우저를 끄면 실행되는 이벤트
+		$(window).on("beforeunload", e => {
+			unsubscribe();
+		});
+		
+		//연결 해제
+		const unsubscribe = () => {
+			//나 퇴장할꺼다 메세지를 전달해서 방의 연결자수를 줄인다.
+			ws.send("<c:url value='/pub/chat/message'/>", {}
+	        , JSON.stringify({type:'LEAVE',room_id:$("#room_id").text(), sender : sender}));
+			//구독 해제
+			if(subscription != null){
+				subscription.unsubscribe();
+				subscription = null;
+			}
+			//stomp 연결종료
+			ws.disconnect(() => {
+				console.log("stomp 연결 종료")
+			}, {});
 		}
 		
 	</script>

@@ -60,10 +60,10 @@ public class ChatRoomController {
 	}
 	
 	//구독이 발생했을때 처리하는 어노테이션을 이용한 채팅방 입장과 퇴장시의 입장자수 관리
-	@SubscribeMapping("/chatroom/{roomId}")
-	public void subEventProcess() {
-		System.out.println("구독하려왔음");
-	}
+//	@SubscribeMapping("/chatroom/{roomId}")
+//	public void subEventProcess() {
+//		System.out.println("구독하려왔음");
+//	}
 	
 	
 }
