@@ -2,6 +2,11 @@
  * 
  */
 $(function(){
+	
+	
+	
+	
+	
 	//필수 체크 영역을 체크 하였는지 확인한다.
 	  // 2.이용약관하나라도 안누르면 다음버튼안눌리게 return false
 	function chBox(){
@@ -92,9 +97,15 @@ $(function(){
 	    	}
 	    }); 
 	}
-	
+	//웹소켓 연결
+	const sock = new SockJS("/ws-stomp");
+	const ws = Stomp.over(sock);
+	var subscription=null;
+	var sender = localStorage.getItem('chat.sender');;
+	console.log("sender ", sender)
 	//로그인 ajax
 	function login(){
+		localStorage.setItem('chat.sender', sender);
 		const param = {
 		        username: username.value,
 		        password: password.value
@@ -109,6 +120,16 @@ $(function(){
 		    		if (json.status) {
 			        	  location.href = Index; 
 			          }
+			          //채팅알람에 대한 구독중
+			       ws.connect({},function(frame){
+						subscription = ws.subscribe("/sub/chat/alarm/"+username.value
+								,message => {//구독한곳에서 메시지가 오면
+									const recv = JSON.parse(message.body);//메시지 파싱
+									chatRecvMessage(recv);
+								}, {sender:username.value});//보내는 사람을 등록할필요가 있나?
+					},error => {
+						alert("error "+error);
+					}); //채팅 알람 
 		    	}
 		    }); 
 //		      fetch("/legacy/member/LoginMember.do", {
@@ -125,6 +146,9 @@ $(function(){
 //		        	  location.href = "/legacy/main/Index.do"; 
 //		          }
 //		      });
+	}
+	function chatRecvMessage(recv) {
+		alert(recv.contents);
 	}
 	//비밀번호 찾기 ajax
 	function pwdFind(){
