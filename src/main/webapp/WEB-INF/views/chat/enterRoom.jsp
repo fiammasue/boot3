@@ -72,9 +72,23 @@
 		
 		//페이지를 나가거나 브라우저를 끄면 실행되는 이벤트
 		$(window).on("beforeunload", e => {
+			alert("beforeunload");
 			unsubscribe();
 		});
-		
+		//다른링크로 갈때
+// 		window.onbeforeunload = function() {
+// 			  return "저장되지 않은 변경사항이 있습니다. 정말 페이지를 떠나실 건 가요?";
+// 			};
+// 			//뒤로가기
+// 		window.onpopstate = function() {
+// 			alert("뒤로가기 눌럿는데");
+// 		};
+// 		window.addEventListener('pageshow', (event) => {
+// 			alert("페이지를 변경했는디?");
+// 		});
+// 		window.onhashchange = function(){
+// 			alert("엥??")
+// 		}
 		//연결 해제
 		const unsubscribe = () => {
 			//나 퇴장할꺼다 메세지를 전달해서 방의 연결자수를 줄인다.

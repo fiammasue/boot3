@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.dao.AlarmDAO">
+	
+	<insert id="insertAlarm">
+		insert into alarm(
+					alarm_id
+					,contents
+					,alarm_code
+					,page_type
+					,receiver
+					,read_yn
+					,reg_date
+				)
+					values(
+					alarm_num.nextval
+					,#{contents}
+					,#{alarm_code}
+					,#{page_type}
+					,#{receiver}
+					,#{read_yn}
+					,sysdate
+				)
+	</insert>
+	<select id="selectByReceiver" resultType="Alarm">
+		select *
+		from alarm
+		where receiver=#{receiver}
+	</select>
+	<update id="updateReadYn">
+		update alarm
+		set read_yn = 'Y'
+		where receiver=#{receiver}
+	
+	</update>
+	
+</mapper>
