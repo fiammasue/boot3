@@ -14,8 +14,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.2.0/stomp.min.js"></script>
 </head>
 <body>
-	<label id="room_id">${room_id }</label>
-	
+	<label id="room_id">${roomInfo.room_id }</label>
+	<c:if test="${loginMember.uid != roomInfo.receiver}">
+		<label id="receiver">${roomInfo.receiver }</label>
+	</c:if>
+	<c:if test="${loginMember.uid == roomInfo.receiver}">
+		<label id="receiver">${roomInfo.sender }</label>
+	</c:if>
+
 	<div>
 		<div id="chatList" style="float:right;">
 			<c:forEach var="message" items="${chatList }">
@@ -25,75 +31,85 @@
 	
 		<input type="text" id="chatContent" style="width:50%;float:right;"/>
 		<button type="button" id="sendMessage" style="float:right;">전송</button>
+		<button type="button" id="exitRoom">나가기</button>
 	</div>
 	<script type="text/javascript">
-		//웹소켓 연결
-		const sock = new SockJS("/ws-stomp");
-		const ws = Stomp.over(sock);
-		var subscription = null;
-		const sender = "${loginMember.uid}";
-		console.log("sender ",sender);
+// 		//웹소켓 연결
+// 		const sock = new SockJS("/ws-stomp");
+// 		const ws = Stomp.over(sock);
+// 		var subscription = null;
+		const receiver = $("#receiver").text();
+// 		console.log("sender ",sender);
 		
-		//웹소켓 구독
-		ws.connect({},function(frame){
-			subscription = ws.subscribe("/sub/chat/room/${room_id}"
-					,message => {//구독한곳에서 메시지가 오면
-						const recv = JSON.parse(message.body);//메시지 파싱
-						recvMessage(recv);
-					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
-			//입장하면 접속자 수를 하나 늘린다. sender는 필요없을것
-			ws.send("/pub/chat/message", {}
-	        , JSON.stringify({type:'ENTER',room_id:$("#room_id").text(), sender : sender}));			
-		},error => {
-			alert("error "+error);
-		});
+// 		//웹소켓 구독
+// 		ws.connect({},function(frame){
+// 			subscription = ws.subscribe("/sub/chat/room/${room_id}"
+// 					,message => {//구독한곳에서 메시지가 오면
+// 						const recv = JSON.parse(message.body);//메시지 파싱
+// 						recvMessage(recv);
+// 					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
+// 			//입장하면 접속자 수를 하나 늘린다. sender는 필요없을것
+// 			ws.send("/pub/chat/message", {}
+// 	        , JSON.stringify({type:'ENTER',room_id:$("#room_id").text(), sender : sender}));			
+// 		},error => {
+// 			alert("error "+error);
+// 		});
 		
 		//메시지를 입력하고 엔터를 눌렀다면 전송가자!!
-		$("#sendMessage").on("click",e =>{
-
+		$("#sendMessage").on("click",e => {
+				alert(" ? ");
 				if(subscription == null) return;
 				const message = $("#chatContent").val();//메시지 내용
 				//메시지 보내기
 				ws.send("/pub/chat/message",{},JSON.stringify({
 																type:'TALK'
+																,type_string:"TALK"
 																,room_id:$("#room_id").text()
 																,message:$("#chatContent").val()
 																,sender:sender
+																,receiver:receiver
 																}));
 				//메시지 창 비우기
 				$("#chatContent").val("");
 		});
 		
 		//받아온 메시지 처리 -> 구독할때 등록해준다.
-		const recvMessage = recv => {
-			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
-			$("#chatList").append(chatListInfo);
-		}
-		
-		//페이지를 나가거나 브라우저를 끄면 실행되는 이벤트
-		$(window).on("beforeunload", e => {
-			alert("beforeunload");
-			unsubscribe();
-		});
-		//다른링크로 갈때
-// 		window.onbeforeunload = function() {
-// 			  return "저장되지 않은 변경사항이 있습니다. 정말 페이지를 떠나실 건 가요?";
-// 			};
-// 			//뒤로가기
-// 		window.onpopstate = function() {
-// 			alert("뒤로가기 눌럿는데");
-// 		};
-// 		window.addEventListener('pageshow', (event) => {
-// 			alert("페이지를 변경했는디?");
-// 		});
-// 		window.onhashchange = function(){
-// 			alert("엥??")
+// 		const recvMessage = recv => {
+// 			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+// 			$("#chatList").append(chatListInfo);
 // 		}
-		//연결 해제
+		
+		
+		$("#exitRoom").on("click",e =>{
+			ws.send("<c:url value='/pub/chat/message'/>", {}
+	        , JSON.stringify({type:'LEAVE',room_id:$("#room_id").text()}));
+			location.href = "/chat/roomList";
+		});
+		
+// 		//페이지를 나가거나 브라우저를 끄면 실행되는 이벤트
+// 		$(window).on("beforeunload", e => {
+// 			alert("beforeunload");
+// 			unsubscribe();
+// 		});
+// 		//다른링크로 갈때
+// // 		window.onbeforeunload = function() {
+// // 			  return "저장되지 않은 변경사항이 있습니다. 정말 페이지를 떠나실 건 가요?";
+// // 			};
+// // 			//뒤로가기
+// // 		window.onpopstate = function() {
+// // 			alert("뒤로가기 눌럿는데");
+// // 		};
+// // 		window.addEventListener('pageshow', (event) => {
+// // 			alert("페이지를 변경했는디?");
+// // 		});
+// // 		window.onhashchange = function(){
+// // 			alert("엥??")
+// // 		}
+// 		//연결 해제
 		const unsubscribe = () => {
 			//나 퇴장할꺼다 메세지를 전달해서 방의 연결자수를 줄인다.
-			ws.send("<c:url value='/pub/chat/message'/>", {}
-	        , JSON.stringify({type:'LEAVE',room_id:$("#room_id").text(), sender : sender}));
+// 			ws.send("<c:url value='/pub/chat/message'/>", {}
+// 	        , JSON.stringify({type:'LEAVE',room_id:$("#room_id").text(), sender : sender}));
 			//구독 해제
 			if(subscription != null){
 				subscription.unsubscribe();

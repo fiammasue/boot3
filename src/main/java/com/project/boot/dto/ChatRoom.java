@@ -29,16 +29,16 @@ public class ChatRoom {
 		room_id = UUID.randomUUID().toString();		
 	}
 
-	public void typeProcess(Message message) {
-	  	switch(message.getType()) {
-		  	case ENTER:
-		  		connected_count++;
-		  		break;
-		  	case LEAVE:
-		  		connected_count--;
-		  		break;
-		  	default:
-	  	}
-		
-	}
+//	public void typeProcess(Message message) {
+//	  	switch(message.getType()) {
+//		  	case ENTER:
+//		  		connected_count++;
+//		  		break;
+//		  	case LEAVE:
+//		  		connected_count--;
+//		  		break;
+//		  	default:
+//	  	}
+//		
+//	}
 }
