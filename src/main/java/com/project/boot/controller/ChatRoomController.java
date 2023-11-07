@@ -1,9 +1,11 @@
 package com.project.boot.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,13 +43,14 @@ public class ChatRoomController {
 		chatRoomService.createRoom(chatRoom);
 		return chatRoom;
 	}
-	
-	@GetMapping("/chat/enterRoom/{room_id}")
-	public String goToEnterRoom(Model model, @PathVariable(value="room_id") String roomId) {
+	@ResponseBody
+	@RequestMapping("/chat/enterRoom/{room_id}")
+	public Map<String,Object> goToEnterRoom( @PathVariable(value="room_id") String roomId) {
 		System.out.println("roomInfo -> "+ chatRoomService.findRoomById(roomId));
-		model.addAttribute("roomInfo", chatRoomService.findRoomById(roomId));
-		model.addAttribute("chatList",messageService.selectMessageList(roomId));
-		return "chat/enterRoom";
+		Map<String,Object> result = new HashMap<>();
+		result.put("roomInfo", chatRoomService.findRoomById(roomId));
+		result.put("chatList",messageService.selectMessageList(roomId));
+		return result;
 	}
 	
 	//이거 구독할때 사용하는 줄 알았는데 전혀아니네 이거 없어도 돌아감;;
