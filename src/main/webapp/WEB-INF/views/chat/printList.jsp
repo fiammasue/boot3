@@ -18,7 +18,7 @@
 	<div id="roomList">
 		<c:forEach var="chatRoom" items="${ roomList}">
 			<div class="card text-bg-info mb-3" style="max-width: 18rem;">
-	           <div class="card-header" ><a href="/chat/enterRoom/${chatRoom.room_id}">${chatRoom.room_id}</a></div>
+	           <div class="card-header" data-roomid="${chatRoom.room_id}">${chatRoom.room_id}</div>
 	           <div class="card-body">
 	             <h5 class="card-title">${chatRoom.room_name}</h5>
 	             <p class="card-text">${chatRoom.receiver}</p>
@@ -72,6 +72,16 @@
 // 				}
 // 			});
 // 		});
+		
+		
+		$(document).on("click", ".card-header", function() {
+		  	let roomId = $(this).data("roomid");
+		  	alert(roomId);
+		  	location.href = "/chat/enterRoom/"+roomId;
+		  	ws.send("/pub/chat/message", {}
+	        , JSON.stringify({type:'ENTER',room_id:roomId, sender : sender}));
+		});
+		
 		
 		$("#createRoom").on("click", e =>{
 			const param = {

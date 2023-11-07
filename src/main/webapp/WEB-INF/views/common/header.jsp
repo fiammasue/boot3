@@ -374,5 +374,48 @@
         <script src="<c:url value='/js/loadDomHeader.js'/>"></script> 
         <!-- input에 대한 내용체크 -->
 		<script src="<c:url value='/js/inputCheck2.js'/>"></script>
-
+	<script>
+		//웹소켓 연결
+		var sock = new SockJS("/ws-stomp");
+		var ws = Stomp.over(sock);
+		var subscription = null;
+		const sender = "${loginMember.uid}";
+		
+		if(sender != ""){
+			ws.connect({},function(frame){
+				subscription = ws.subscribe("/sub/member/userId/"+sender
+						,message => {//구독한곳에서 메시지가 오면
+							const recv = JSON.parse(message.body);//메시지 파싱
+							chatRecvMessage(recv);
+						}, {sender:sender});//보내는 사람을 등록할필요가 있나?
+			},error => {
+				alert("error "+error);
+			});
+		}
+	
+		function chatRecvMessage(recv) {
+			console.log(recv)
+			if (recv.type_string==="ALARM") {
+				alert("ALARM");
+				alert(recv.contents, recv.receiver)
+			}
+			else if (recv.type_string==="TALK") {
+				alert("TALK");
+				var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+				$("#chatList").append(chatListInfo);
+			}
+			else if (recv.type_string==="ENTER") {
+				alert("입장");
+				var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+				$("#chatList").append(chatListInfo);
+			}
+			else if (recv.type_string==="LEAVE") {
+				alert("퇴장");
+				var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+				$("#chatList").append(chatListInfo);
+			}
+			
+			
+		}
+	</script>
   

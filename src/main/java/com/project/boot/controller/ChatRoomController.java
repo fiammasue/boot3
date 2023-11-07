@@ -27,10 +27,10 @@ public class ChatRoomController {
 	@RequestMapping("/chat/roomList")
 	public String goToRoomList(HttpSession session , Model model, ChatRoom room) {
 		Member member = (Member)session.getAttribute("loginMember");
-		room.setUser_id(member.getName());
+		room.setUser_id(member.getUid());
 		System.out.println("room");
 		model.addAttribute("roomList", chatRoomService.selectRoomList(room));
-		return "chat/printRoom";
+		return "chat/printList";
 	}
 	
 	@ResponseBody
@@ -44,8 +44,8 @@ public class ChatRoomController {
 	
 	@GetMapping("/chat/enterRoom/{room_id}")
 	public String goToEnterRoom(Model model, @PathVariable(value="room_id") String roomId) {
-		model.addAttribute("room_id", roomId);
-		System.out.println("message list -> "+messageService.selectMessageList(roomId));
+		System.out.println("roomInfo -> "+ chatRoomService.findRoomById(roomId));
+		model.addAttribute("roomInfo", chatRoomService.findRoomById(roomId));
 		model.addAttribute("chatList",messageService.selectMessageList(roomId));
 		return "chat/enterRoom";
 	}
