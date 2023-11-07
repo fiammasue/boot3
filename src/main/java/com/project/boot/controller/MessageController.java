@@ -1,5 +1,7 @@
 package com.project.boot.controller;
 
+import java.sql.Timestamp;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,9 @@ public class MessageController {
 	@MessageMapping("/chat/message")
 	public void message(Message message) {
 		// 수신한 메세지의 타입에 따라 처리할 과정을 넣어줘야할 것같음
-		
+		//현재시간을 나타내기
+		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+		message.setReg_date(currentTimestamp);
 		if (MessageType.ENTER==message.getType() ) {
 			
 			System.out.println("입장 메세지를 통해서 접속자수를 조정한다.");

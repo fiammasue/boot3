@@ -395,14 +395,44 @@
 	
 		function chatRecvMessage(recv) {
 			console.log(recv)
+			//시간 자르기
+   			 var timestampString = recv.reg_date;
+
+   			// "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
+   			var timePart = timestampString.split("T")[1];
+
+   			// 시:분 부분만 선택
+   			var time = timePart.substring(0, 5);
+   			
 			if (recv.type_string==="ALARM") {
 				alert("ALARM");
 				alert(recv.contents, recv.receiver)
 			}
 			else if (recv.type_string==="TALK") {
 				alert("TALK");
-				var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
-				$("#chatList").append(chatListInfo);
+				var chatListInfo = "";
+				 if(recv.sender != "${loginMember.uid}"){
+		    			 chatListInfo+=`<div class="chat ch1">
+					    		            <div class="textbox">`+recv.message+`</div>
+					    		            <div class="sender-time">`+time+`</div>`;
+					   	if(recv.read_yn=='N'){
+		    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
+					   		
+					   	}
+					   	chatListInfo+=`</div>`;
+				 }	
+				 else{
+					  	chatListInfo += `<div class="chat ch2">
+					    		            <div class="textbox">`+recv.message+`</div>
+					    		            <div class="receiver-time">`+time+`</div>`
+					   	if(recv.read_yn=='N'){
+			    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;
+					   		
+					   	}
+					    	chatListInfo+=`</div>`;
+					 
+				 }
+				$('.wrap').append(chatListInfo); 
 			}
 			else if (recv.type_string==="ENTER") {
 				alert("입장");
